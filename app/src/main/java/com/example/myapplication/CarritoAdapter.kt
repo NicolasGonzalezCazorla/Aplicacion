@@ -1,8 +1,10 @@
 package com.example.myapplication
 
+import Producto
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -10,6 +12,7 @@ class CarritoAdapter(private val lista: List<Producto>) :
     RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
 
     class CarritoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val img: ImageView = itemView.findViewById(R.id.imgProducto)
         val nombre: TextView = itemView.findViewById(R.id.txtNombreProducto)
         val precio: TextView = itemView.findViewById(R.id.txtPrecioProducto)
         val categoria: TextView = itemView.findViewById(R.id.txtCategoriaProducto)
@@ -26,6 +29,7 @@ class CarritoAdapter(private val lista: List<Producto>) :
         holder.nombre.text = producto.nombre
         holder.precio.text = producto.precio
         holder.categoria.text = producto.categoria
+        holder.img.setImageResource(producto.imageResId)
     }
 
     override fun getItemCount(): Int = lista.size

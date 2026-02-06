@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/txtTituloProductos"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Productos deportivos"
         android:textSize="22sp"
@@ -31,6 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@id/btnVolver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
