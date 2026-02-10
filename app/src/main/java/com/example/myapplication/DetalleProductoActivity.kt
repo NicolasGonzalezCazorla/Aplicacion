@@ -1,13 +1,16 @@
 package com.example.myapplication
 
-import Producto
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
+import Producto
 class DetalleProductoActivity : AppCompatActivity() {
+
+    private var cantidad = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +26,43 @@ class DetalleProductoActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.txtCategoriaDetalle).text = categoria
         findViewById<ImageView>(R.id.imgDetalleProducto).setImageResource(imageResId)
 
+        val txtCantidad = findViewById<TextView>(R.id.txtCantidad)
+        val btnMenos = findViewById<MaterialButton>(R.id.btnMenos)
+        val btnMas = findViewById<MaterialButton>(R.id.btnMas)
+        val btnAgregar = findViewById<MaterialButton>(R.id.btnAgregarCarrito)
+
+        fun refrescarUI() {
+            txtCantidad.text = cantidad.toString()
+            btnMenos.isEnabled = cantidad > 1
+            btnAgregar.text = "Añadir al carrito (x$cantidad)"
+        }
+
+        btnMenos.setOnClickListener {
+            if (cantidad > 1) cantidad--
+            refrescarUI()
+        }
+
+        btnMas.setOnClickListener {
+            if (cantidad < 99) cantidad++
+            refrescarUI()
+        }
+
+        refrescarUI()
+
         findViewById<Button>(R.id.btnVolver).setOnClickListener { finish() }
 
-        findViewById<Button>(R.id.btnAgregarCarrito).setOnClickListener {
-            // ✅ Guardar en carrito (lista en memoria)
-            CarritoManager.productos.add(
-                Producto(nombre, precio, categoria, imageResId)
+        btnAgregar.setOnClickListener {
+            CarritoManager.agregarProducto(
+                Producto(nombre, precio, categoria, imageResId),
+                cantidad
             )
-            finish()
+
+            // ✅ feedback bonito, sin salir de la pantalla
+            Snackbar.make(btnAgregar, "Añadido x$cantidad al carrito", Snackbar.LENGTH_SHORT).show()
+
+            // opcional: reset a 1 después de añadir
+            cantidad = 1
+            refrescarUI()
         }
     }
 }

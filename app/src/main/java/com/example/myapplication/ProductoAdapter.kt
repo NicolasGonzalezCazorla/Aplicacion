@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import Producto
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import Producto
 
 class ProductoAdapter(
-    private val listaProductos: List<Producto>
+    private var listaProductos: List<Producto>
 ) : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
 
     class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,6 +18,11 @@ class ProductoAdapter(
         val txtNombreProducto: TextView = itemView.findViewById(R.id.txtNombreProducto)
         val txtPrecioProducto: TextView = itemView.findViewById(R.id.txtPrecioProducto)
         val txtCategoriaProducto: TextView = itemView.findViewById(R.id.txtCategoriaProducto)
+    }
+
+    fun actualizarLista(nuevaLista: List<Producto>) {
+        listaProductos = nuevaLista
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder {
@@ -34,7 +39,6 @@ class ProductoAdapter(
         holder.txtCategoriaProducto.text = producto.categoria
         holder.imgProducto.setImageResource(producto.imageResId)
 
-        // ✅ CLICK -> DetalleProductoActivity
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetalleProductoActivity::class.java)
             intent.putExtra("nombre", producto.nombre)

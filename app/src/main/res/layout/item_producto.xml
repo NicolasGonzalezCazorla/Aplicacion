@@ -4,66 +4,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     app:cardCornerRadius="18dp"
-    app:cardElevation="3dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="#1A000000"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="#F7FFFFFF">
+    app:cardBackgroundColor="#FFFFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="14dp">
+        android:orientation="vertical">
 
+        <!-- Imagen grande -->
         <ImageView
             android:id="@+id/imgProducto"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_productos"
             android:contentDescription="@null"
             android:importantForAccessibility="no"/>
 
+        <!-- Info -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="12dp">
 
             <TextView
                 android:id="@+id/txtNombreProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="Nombre producto"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textColor="#1E1E1E"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/txtPrecioProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio"
+                android:text="59.99 €"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="#5E35B1"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="6dp"/>
 
+            <!-- Categoría discreta -->
             <TextView
                 android:id="@+id/txtCategoriaProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categoría"
+                android:text="Running"
                 android:textSize="12sp"
-                android:textColor="#616161"
-                android:layout_marginTop="6dp"/>
+                android:textColor="#757575"
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
     </LinearLayout>

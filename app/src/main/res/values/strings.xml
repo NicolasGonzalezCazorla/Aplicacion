@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="volver">Volver</string>
+    <string name="nombre_producto">Nombre producto</string>
 </resources>
